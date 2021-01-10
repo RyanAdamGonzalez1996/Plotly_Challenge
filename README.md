@@ -1,6 +1,9 @@
 # Plotly_Challenge
 Homework: 15 - Interactive Visualizations and Dashboards
 
+# GitHub Pages:
+https://ryanadamgonzalez1996.github.io/Plotly_Challenge/
+
 # DataSet:
 [Belly Button Biodiversity dataset], (http://robdunnlab.com/projects/belly-button-biodiversity/)
 
@@ -72,4 +75,4 @@ Create your own meaningful chart using plotly.
 
 ## How to Run Code:
  - Will be Deployed on GitHub pages, the link will be below:
- 
+ https://ryanadamgonzalez1996.github.io/Plotly_Challenge/
