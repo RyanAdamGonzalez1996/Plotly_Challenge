@@ -42,17 +42,37 @@ function buildCharts(sample) {
     d3.json("samples.json").then((bellyData => {
     
         // Get the data needed for the Charts (10 samples)
-        var ids = bellyData.samples[0].otu_ids.slice(0,10);
+        var ids = bellyData.samples[0].otu_ids;
+        var filteredIds = ids.slice(0,10);
         console.log(ids);
 
-        var sampleValues = bellyData.samples[0].sample_values.slice(0,10);
+        var sampleValues = bellyData.samples[0].sample_values;
+        var filteredSampleValues = sampleValues.slice(0,10);
         console.log(sampleValues);
 
-        var labels = bellyData.samples[0].otu_labels.slice(0,10);
+        var labels = bellyData.samples[0].otu_labels;
+        var filteredLabels = labels.slice(0,10);
         console.log(labels);
 
         // Create bar chart in correct location
-        
+        var trace1 = [{
+            
+            type: "bar",
+            x: filteredSampleValues,
+            y: filteredIds,
+            orientation: "h"
+    
+        }];
+
+        var layout1 = [{
+
+            title: "Horizontal Bar Chart for 10 samples",
+            showlegend: false,
+            height: 600,
+            width: 1400
+        }];
+
+        Plotly.newPlot("bar", trace1, layout1);
         // Create bubble chart in correct location
         var trace2 = [{
 
