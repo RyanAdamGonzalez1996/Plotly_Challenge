@@ -32,10 +32,7 @@ function buildMetadata(sample) {
                                     + "location: " + entry[1].location + "\n"
                                     + "wfreq: " + entry[1].wfreq + "\n");
         });
-
     }));
-        
-
 }
 
 // Define a function that will create charts for given sample
@@ -81,8 +78,8 @@ function init() {
     
         
     // Use first sample (index = 0) to build metadata and initial plots
-    buildCharts(data.names[0]);
     buildMetadata(data.names[0]);
+    buildCharts(data.names[0]);
 
     });
 }
@@ -90,10 +87,17 @@ function init() {
 function optionChanged(newSample){
 
     // Update metadata with newly selected sample
-
+    buildMetadata(newSample);
     // Update charts with newly selected sample
+    buildCharts(newSample);
 
 }
+
+d3.select("#selDataset")
+  .on("change", function() {
+    var newData = d3.select(this).property('value');
+    updateLegend(newData);
+});
 
 // Initialize dashboard on page load
 init();
