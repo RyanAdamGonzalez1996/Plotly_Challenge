@@ -7,10 +7,14 @@ function buildMetadata(sample) {
 
     // Read the json data
     d3.json("samples.json").then((bellyData => {
-        var data = bellyData;
+        var metadata = bellyData.metadata;
+
+        // Check to make sure the metadata is correct in console
+        console.log(metadata);
 
         // Parse and filter the data to get the sample's metadata
-        console.log(bellyData);
+        var currentSample = metadata.filter(meta => meta.id.toString() === sample);
+        console.log(currentSample);
         // Specify the location of the metadata and update it        
     }))
         
@@ -39,7 +43,7 @@ function init() {
 
     // Read json data
     d3.json("samples.json").then((bellyData) => {
-        
+
         // Initialize the data variable
         var data = bellyData;
 
@@ -48,11 +52,13 @@ function init() {
             dropdown.append("option")
                     .text(name).property("value");
         });
-    })
+    
         
     // Use first sample (index = 0) to build metadata and initial plots
     buildCharts(data.names[0]);
     buildMetadata(data.names[0]);
+
+    });
 }
 
 function optionChanged(newSample){
