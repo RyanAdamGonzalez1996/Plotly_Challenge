@@ -23,8 +23,14 @@ function buildMetadata(sample) {
         demoInfo.html("");
 
         // Pull the data from currentSample into the "demographic info" section
-        Object.entries(currentSample).forEach((entry) => {
-            demoInfo.append("h3").text(entry[0]);
+        Object.entries(currentSample).forEach((entry, value) => {
+            demoInfo.append("h3").text("age: " + entry[1].age + "\n"
+                                    + "bbtype: " + entry[1].bbtype + "\n"
+                                    + "ethnicity: " + entry[1].ethnicity + "\n"
+                                    + "gender: " + entry[1].gender + "\n"
+                                    + "id: " + entry[1].id + "\n"
+                                    + "location: " + entry[1].location + "\n"
+                                    + "wfreq: " + entry[1].wfreq + "\n");
         });
 
     }));
@@ -37,11 +43,9 @@ function buildCharts(sample) {
 
     // Read the json data
     d3.json("samples.json").then((bellyData => {
-
-        // Parse and filter the data to get the sample's OTU data
-        
-        // Pay attention to what data is required for each chart
-        var ids = bellyData.samples[0].out_ids;
+    
+        // Get the data needed for the Charts (10 samples)
+        var ids = bellyData.samples[0].otu_ids.slice(0,10);
         console.log(ids);
 
         var sampleValues = bellyData.samples[0].sample_values.slice(0,10);
@@ -49,6 +53,7 @@ function buildCharts(sample) {
 
         var labels = bellyData.samples[0].otu_labels.slice(0,10);
         console.log(labels);
+
         // Create bar chart in correct location
 
         // Create bubble chart in correct location
