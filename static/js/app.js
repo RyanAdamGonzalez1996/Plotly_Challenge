@@ -52,9 +52,28 @@ function buildCharts(sample) {
         console.log(labels);
 
         // Create bar chart in correct location
-
+        
         // Create bubble chart in correct location
-    
+        var trace2 = [{
+
+            x: ids,
+            y: sampleValues,
+            text: labels,
+            mode: 'markers',
+            marker: {
+              color: ids,
+              size: sampleValues
+            }}];
+
+          var layout2 = {
+
+            title: "Bubble chart for each sample",
+            showlegend: false,
+            height: 600,
+            width: 1400 
+          };
+          
+          Plotly.newPlot("bubble", trace2, layout2);
     }));
 }
 
@@ -93,6 +112,7 @@ function optionChanged(newSample){
 
 }
 
+// Handle event of changing dropdown menu value
 d3.select("#selDataset")
   .on("change", function() {
     var newData = d3.select(this).property('value');
