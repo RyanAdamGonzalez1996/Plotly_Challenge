@@ -36,14 +36,24 @@ function buildMetadata(sample) {
 function buildCharts(sample) {
 
     // Read the json data
+    d3.json("samples.json").then((bellyData => {
 
         // Parse and filter the data to get the sample's OTU data
+        
         // Pay attention to what data is required for each chart
+        var ids = bellyData.samples[0].out_ids;
+        console.log(ids);
 
+        var sampleValues = bellyData.samples[0].sample_values.slice(0,10);
+        console.log(sampleValues);
+
+        var labels = bellyData.samples[0].otu_labels.slice(0,10);
+        console.log(labels);
         // Create bar chart in correct location
 
         // Create bubble chart in correct location
     
+    }));
 }
 
 // Define function that will run on page load
