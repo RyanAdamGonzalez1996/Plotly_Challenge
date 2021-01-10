@@ -6,10 +6,14 @@ Feel free to disregard and create your own code */
 function buildMetadata(sample) {
 
     // Read the json data
+    d3.json("samples.json").then((bellyData => {
+        var data = bellyData;
 
         // Parse and filter the data to get the sample's metadata
-
-        // Specify the location of the metadata and update it
+        console.log(bellyData);
+        // Specify the location of the metadata and update it        
+    }))
+        
 
 }
 
@@ -30,14 +34,25 @@ function buildCharts(sample) {
 // Define function that will run on page load
 function init() {
 
+    // Select the dropdown object
+    var dropdown = d3.select("#selDataset");
+
     // Read json data
+    d3.json("samples.json").then((bellyData) => {
+        
+        // Initialize the data variable
+        var data = bellyData;
 
-        // Parse and filter data to get sample names
-
-        // Add dropdown option for each sample
-
-    // Use first sample to build metadata and initial plots
-
+        // Get the ids for the dropdown menu
+        data.names.forEach(function(name){
+            dropdown.append("option")
+                    .text(name).property("value");
+        });
+    })
+        
+    // Use first sample (index = 0) to build metadata and initial plots
+    buildCharts(data.names[0]);
+    buildMetadata(data.names[0]);
 }
 
 function optionChanged(newSample){
