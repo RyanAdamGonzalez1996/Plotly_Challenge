@@ -15,8 +15,19 @@ function buildMetadata(sample) {
         // Parse and filter the data to get the sample's metadata
         var currentSample = metadata.filter(meta => meta.id.toString() === sample);
         console.log(currentSample);
+
         // Specify the location of the metadata and update it        
-    }))
+        var demoInfo = d3.select("#sample-metadata");
+
+        // Clear the "demographic info" section before adding new data
+        demoInfo.html("");
+
+        // Pull the data from currentSample into the "demographic info" section
+        Object.entries(currentSample).forEach((entry) => {
+            demoInfo.append("h3").text(entry[0]);
+        });
+
+    }));
         
 
 }
